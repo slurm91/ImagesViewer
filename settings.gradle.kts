@@ -12,5 +12,10 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "ImagesViewer"
-include ':app'
+include(":app")
+include(":core")
+include(":feature:list")
+include(":feature:details")
+

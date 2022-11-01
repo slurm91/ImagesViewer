@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/graph_main"
+    app:startDestination="@id/imageListFragment">
+
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="by.vzhilko.list.presentation.fragment.ImageListFragment"
+        android:label="ImageListFragment" >
+        <action
+            android:id="@+id/action_imageListFragment_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageDetailsFragment"
+        android:name="by.vzhilko.details.fragment.ImageDetailsFragment"
+        android:label="ImageDetailsFragment" />
+
+</navigation>
