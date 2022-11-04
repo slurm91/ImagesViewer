@@ -41,8 +41,16 @@ class DepsGradlePlugin : Plugin<Project> {
 
     //region Default Dependencies
     private fun addDefaultDependencies(target: Project) {
+        addKotlinDependencies(target)
         addAndroidxDependencies(target)
         addGoogleDependencies(target)
+        addSquareupDependencies(target)
+    }
+
+    private fun addKotlinDependencies(target: Project) {
+        target.dependencies.apply {
+            addImplementation(DepsConstants.Kotlin.COROUTINES)
+        }
     }
 
     private fun addAndroidxDependencies(target: Project) {
@@ -51,6 +59,9 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Androidx.APPCOMPAT)
             addImplementation(DepsConstants.Androidx.NAVIGATION_FRAGMENT_KTX)
             addImplementation(DepsConstants.Androidx.NAVIGATION_UI_KTX)
+            addImplementation(DepsConstants.Androidx.VIEW_MODEL_KTX)
+            addImplementation(DepsConstants.Androidx.VIEW_MODEL_SAVED_STATE)
+            addKapt(DepsConstants.Androidx.LIFECYCLE_COMPILER)
         }
     }
 
@@ -59,6 +70,15 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Google.MATERIAL)
             addImplementation(DepsConstants.Google.DAGGER)
             addKapt(DepsConstants.Google.DAGGER_COMPILER)
+            addImplementation(DepsConstants.Google.GSON)
+        }
+    }
+
+    private fun addSquareupDependencies(target: Project) {
+        target.dependencies.apply {
+            addImplementation(DepsConstants.Squareup.RETROFIT)
+            addImplementation(DepsConstants.Squareup.RETROFIT_CONVERTER_GSON)
+            addImplementation(DepsConstants.Squareup.HTTP_LOGGING_INTERCEPTOR)
         }
     }
     //endregion

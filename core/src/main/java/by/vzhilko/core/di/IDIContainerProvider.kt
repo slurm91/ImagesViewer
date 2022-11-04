@@ -1,4 +1,4 @@
-package by.vzhilko.core.di.annotation
+package by.vzhilko.core.di
 
 interface IDIContainerProvider {
 

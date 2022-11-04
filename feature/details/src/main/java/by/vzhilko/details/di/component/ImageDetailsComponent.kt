@@ -1,14 +1,19 @@
 package by.vzhilko.details.di.component
 
 import by.vzhilko.core.di.annotation.scope.FragmentScope
+import by.vzhilko.core.ui.viewmodel.ViewModelFactory
+import by.vzhilko.core.ui.viewmodel.ViewModelFactoryProvider
+import by.vzhilko.details.di.module.ImageDetailsModule
 import by.vzhilko.details.fragment.ImageDetailsFragment
 import dagger.Subcomponent
 
 @FragmentScope
-@Subcomponent
-interface ImageDetailsComponent {
+@Subcomponent(modules = [ImageDetailsModule::class])
+interface ImageDetailsComponent : ViewModelFactoryProvider {
 
     fun inject(fragment: ImageDetailsFragment)
+
+    override fun getViewModelFactory(): ViewModelFactory
 
     interface Provider {
         fun getImageDetailsComponent(): ImageDetailsComponent

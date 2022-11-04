@@ -1,7 +1,7 @@
 package by.vzhilko.imagesviewer
 
 import android.app.Application
-import by.vzhilko.core.di.annotation.IDIContainerProvider
+import by.vzhilko.core.di.IDIContainerProvider
 import by.vzhilko.imagesviewer.di.DI
 
 class App : Application(), IDIContainerProvider {
