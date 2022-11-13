@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_details_key_value_view_padding">4dp</dimen>
+    <dimen name="image_details_key_value_view_key_right_padding">4dp</dimen>
+</resources>

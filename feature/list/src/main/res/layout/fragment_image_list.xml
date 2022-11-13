@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/image_list_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Image list screen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/image_list_btn"
+        <import type="android.view.View" />
+
+        <import type="by.vzhilko.list.presentation.model.ImageDataListState" />
+
+        <variable
+            name="viewModel"
+            type="by.vzhilko.list.presentation.viewmodel.ImageListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go to details"
-        android:layout_margin="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_list_tv" />
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/image_list_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:iconifiedByDefault="false"
+            android:focusable="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:searchViewQuery="@{viewModel.queryStateFlow}" />
+        <!--app:onSearchViewQueryChanged="@{(query) -> viewModel.updateQuery(query)}"-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/image_list_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.imageListStateStateFlow != ImageDataListState.ERROR ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_list_search_view" />
+
+        <by.vzhilko.list.presentation.view.ImageDataListStateView
+            android:id="@+id/image_list_image_data_list_state_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.imageListStateStateFlow != ImageDataListState.NO_STATE ? View.VISIBLE : View.GONE}"
+            app:imageDataStateViewState="@{viewModel.imageListStateStateFlow}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onImageDataViewRetryAction="@{() -> viewModel.retryImageDataLoading()}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

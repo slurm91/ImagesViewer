@@ -1,5 +1,9 @@
-package by.vzhilko.list.domain.dto
+package by.vzhilko.core.dto
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class ImageData(
     val id: Int,
     val tags: String,
@@ -9,4 +13,4 @@ data class ImageData(
     val likes: Int,
     val comments: Int,
     val user: String
-)
+) : Parcelable

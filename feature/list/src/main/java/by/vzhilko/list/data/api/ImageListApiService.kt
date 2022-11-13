@@ -10,10 +10,10 @@ interface ImageListApiService {
     @GET(".")
     suspend fun getImages(
         @Query("q") query: String? = null,
+        @Query("page") page: Int,
+        @Query("per_page") pageSize: Int,
         @Query("image_type") imageType: String = "photo",
-        @Query("pretty") pretty: Boolean = true,
-        @Query("page") page: Int = 1,
-        @Query("per_page") perPage: Int = 30
+        @Query("pretty") pretty: Boolean = true
     ): NetworkState<ImagesContainerDto>
 
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Parent style for all TextAppearances-->
+    <style name="ImageViewer.TextAppearance" parent="TextAppearance.AppCompat"/>
+
+    <!--region Header-->
+    <style name="ImageViewer.TextAppearance.Header">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ImageViewer.TextAppearance.Header.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="ImageViewer.TextAppearance.Header.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--endregion-->
+
+    <!--region Regular-->
+    <style name="ImageViewer.TextAppearance.Regular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ImageViewer.TextAppearance.Regular.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <!--endregion-->
+
+    <!--region Medium-->
+    <style name="ImageViewer.TextAppearance.Medium">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ImageViewer.TextAppearance.Medium.Gray">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <!--endregion-->
+</resources>

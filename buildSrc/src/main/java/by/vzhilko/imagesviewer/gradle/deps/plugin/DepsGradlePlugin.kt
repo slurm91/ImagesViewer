@@ -45,6 +45,7 @@ class DepsGradlePlugin : Plugin<Project> {
         addAndroidxDependencies(target)
         addGoogleDependencies(target)
         addSquareupDependencies(target)
+        addCoilDependencies(target)
     }
 
     private fun addKotlinDependencies(target: Project) {
@@ -62,6 +63,7 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Androidx.VIEW_MODEL_KTX)
             addImplementation(DepsConstants.Androidx.VIEW_MODEL_SAVED_STATE)
             addKapt(DepsConstants.Androidx.LIFECYCLE_COMPILER)
+            addImplementation(DepsConstants.Androidx.PAGING)
         }
     }
 
@@ -79,6 +81,12 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Squareup.RETROFIT)
             addImplementation(DepsConstants.Squareup.RETROFIT_CONVERTER_GSON)
             addImplementation(DepsConstants.Squareup.HTTP_LOGGING_INTERCEPTOR)
+        }
+    }
+
+    private fun addCoilDependencies(target: Project) {
+        target.dependencies.apply {
+            addImplementation(DepsConstants.Coil.COIL)
         }
     }
     //endregion

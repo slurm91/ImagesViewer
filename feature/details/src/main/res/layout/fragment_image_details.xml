@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="by.vzhilko.details.viewmodel.ImageDetailsViewModel" />
+    </data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Image details screen"
-        android:layout_gravity="center"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/image_details_toolbar"
+            style="@style/ImageViewer.DefaultToolbar"
+            app:title="@string/app_name" />
+
+        <by.vzhilko.details.view.ImageDataDetailsView
+            android:id="@+id/image_details_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:imageDataDetailsViewImageData="@{viewModel.imageDataStateFlow}"/>
+
+    </LinearLayout>
+</layout>

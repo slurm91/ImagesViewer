@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--region Parent style for all styles-->
+    <style name="ImageViewer" />
+    <!--endregion-->
+
+    <!--region Toolbar styles-->
+    <style name="ImageViewer.DefaultToolbar" parent="Widget.Material3.Toolbar.Surface">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="materialThemeOverlay">@style/ImageViewer.DefaultToolbarThemeOverlay</item>
+        <item name="titleTextAppearance">@style/ImageViewer.TextAppearance.Header.White</item>
+        <item name="navigationIcon">@drawable/ic_toolbar_arrow_back_white</item>
+    </style>
+
+    <style name="ImageViewer.DefaultToolbarThemeOverlay">
+        <item name="colorSurface">@color/purple_500</item>
+        <item name="colorOnSurface">@color/white</item>
+    </style>
+    <!--endregion-->
+
+</resources>

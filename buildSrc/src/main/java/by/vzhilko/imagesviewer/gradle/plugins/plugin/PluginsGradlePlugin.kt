@@ -13,6 +13,8 @@ class PluginsGradlePlugin : Plugin<Project> {
         target.apply {
             plugin("org.jetbrains.kotlin.android")
             plugin("kotlin-kapt")
+            plugin("kotlin-parcelize")
+            plugin("androidx.navigation.safeargs.kotlin")
         }
     }
 

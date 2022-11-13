@@ -2,7 +2,7 @@ package by.vzhilko.list.data.mapper
 
 import by.vzhilko.core.util.mapper.IMapper
 import by.vzhilko.list.data.dto.ImageDto
-import by.vzhilko.list.domain.dto.ImageData
+import by.vzhilko.core.dto.ImageData
 import javax.inject.Inject
 
 class ImageDataListMapper @Inject constructor() : IMapper<List<ImageDto>, List<ImageData>> {

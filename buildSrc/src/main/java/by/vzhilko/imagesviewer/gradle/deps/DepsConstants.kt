@@ -22,6 +22,7 @@ object DepsConstants {
             const val APPCOMPAT: String = "1.5.1"
             const val NAVIGATION: String = "2.5.3"
             const val LIFECYCLE: String = "2.5.1"
+            const val PAGING: String = "3.1.1"
         }
 
         const val CORE_KTX: String = "androidx.core:core-ktx:${Versions.CORE_KTX}"
@@ -31,6 +32,7 @@ object DepsConstants {
         const val VIEW_MODEL_KTX: String = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
         const val VIEW_MODEL_SAVED_STATE: String = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.LIFECYCLE}"
         const val LIFECYCLE_COMPILER: String = "androidx.lifecycle:lifecycle-compiler:${Versions.LIFECYCLE}"
+        const val PAGING: String = "androidx.paging:paging-runtime:${Versions.PAGING}"
     }
 
     object Google {
@@ -55,6 +57,14 @@ object DepsConstants {
         const val RETROFIT: String = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
         const val RETROFIT_CONVERTER_GSON: String = "com.squareup.retrofit2:converter-gson:${Versions.RETROFIT}"
         const val HTTP_LOGGING_INTERCEPTOR: String = "com.squareup.okhttp3:logging-interceptor:${Versions.HTTP_LOGGING_INTERCEPTOR}"
+    }
+
+    object Coil {
+        object Versions {
+            const val COIL: String = "2.2.2"
+        }
+
+        const val COIL: String = "io.coil-kt:coil:${Versions.COIL}"
     }
 
     object Test {

@@ -7,6 +7,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 
 class AndroidGradlePlugin : Plugin<Project> {
 
@@ -46,8 +47,7 @@ class AndroidGradlePlugin : Plugin<Project> {
                 targetSdk = AndroidConstants.DefaultConfig.TARGET_SDK
                 versionCode = AndroidConstants.DefaultConfig.VERSION_CODE
                 versionName = AndroidConstants.DefaultConfig.VERSION_NAME
-                testInstrumentationRunner =
-                    AndroidConstants.DefaultConfig.TEST_INSTRUMENTATION_RUNNER
+                testInstrumentationRunner = AndroidConstants.DefaultConfig.TEST_INSTRUMENTATION_RUNNER
             }
         }
     }
@@ -80,7 +80,14 @@ class AndroidGradlePlugin : Plugin<Project> {
     }
 
     private fun configBuildFeaturesExtension(baseExtension: BaseExtension) {
-        baseExtension.buildFeatures.viewBinding = true
+        //baseExtension.buildFeatures.viewBinding = true
+        if(baseExtension is LibraryExtension) {
+            baseExtension.buildFeatures.dataBinding = true
+        }
+
+        if (baseExtension is BaseAppModuleExtension) {
+            baseExtension.buildFeatures.dataBinding = true
+        }
     }
 
 }

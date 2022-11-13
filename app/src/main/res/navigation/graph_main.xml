@@ -9,13 +9,22 @@
         android:name="by.vzhilko.list.presentation.fragment.ImageListFragment"
         android:label="ImageListFragment" >
         <action
-            android:id="@+id/action_imageListFragment_to_imageDetailsFragment"
-            app:destination="@id/imageDetailsFragment" />
+            android:id="@+id/action_imageListFragment_to_imageListDialogFragment"
+            app:destination="@id/imageListDialogFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/imageDetailsFragment"
         android:name="by.vzhilko.details.fragment.ImageDetailsFragment"
         android:label="ImageDetailsFragment" />
+
+    <dialog
+        android:id="@+id/imageListDialogFragment"
+        android:name="by.vzhilko.list.presentation.dialog.ImageListDialogFragment"
+        android:label="ImageListDialogFragment" >
+        <action
+            android:id="@+id/action_imageListDialogFragment_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </dialog>
 
 </navigation>

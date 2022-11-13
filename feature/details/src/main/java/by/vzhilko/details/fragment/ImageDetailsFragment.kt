@@ -7,15 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import by.vzhilko.core.dto.ImageData
 import by.vzhilko.core.ui.fragment.BaseFragment
 import by.vzhilko.details.databinding.FragmentImageDetailsBinding
 import by.vzhilko.details.di.component.ImageDetailsComponent
 import by.vzhilko.details.viewmodel.ImageDetailsViewModel
 
-class ImageDetailsFragment : BaseFragment<ImageDetailsComponent, ImageDetailsViewModel>() {
+class ImageDetailsFragment : BaseFragment<ImageDetailsComponent, ImageDetailsViewModel, FragmentImageDetailsBinding>() {
 
-    private var _binding: FragmentImageDetailsBinding? = null
-    val binding: FragmentImageDetailsBinding get() = _binding!!
+    private val data: ImageData? by lazy { arguments?.getParcelable("IMAGE_DATA") as? ImageData }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,26 +31,30 @@ class ImageDetailsFragment : BaseFragment<ImageDetailsComponent, ImageDetailsVie
         return ViewModelProvider(this, getViewModelFactory())[ImageDetailsViewModel::class.java]
     }
 
-    override fun onCreateView(
+    override fun initAndGetView(
         inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentImageDetailsBinding.inflate(inflater, container, false)
-
-        return binding.root
+        container: ViewGroup?
+    ): FragmentImageDetailsBinding {
+        return FragmentImageDetailsBinding.inflate(inflater, container, false).apply {
+            viewModel = this@ImageDetailsFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("myTag", "ImageListFragment onViewCreated navigator: ${navigator}" +
-                "\nviewModel: ${viewModel}"
+                "\nviewModel: ${viewModel}" +
+                "\n data: ${data}"
         )
+        initView()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun initView() {
+        binding.imageDetailsToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+        data?.let { viewModel.updateImageData(it) }
     }
 
 }

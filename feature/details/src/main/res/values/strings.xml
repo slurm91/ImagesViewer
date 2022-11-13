@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_details_view_name_caption">Name</string>
+    <string name="image_details_view_tags_caption">Tags</string>
+    <string name="image_details_view_likes_caption">Likes</string>
+    <string name="image_details_view_downloads_caption">Downloads</string>
+    <string name="image_details_view_comments_caption">Comments</string>
+</resources>

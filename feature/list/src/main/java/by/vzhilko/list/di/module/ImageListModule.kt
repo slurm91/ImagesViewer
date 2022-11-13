@@ -5,10 +5,12 @@ import by.vzhilko.core.datasource.network.retrofit.extension.createApi
 import by.vzhilko.core.di.annotation.viewmodel.ViewModelKey
 import by.vzhilko.core.util.mapper.IMapper
 import by.vzhilko.list.data.api.ImageListApiService
+import by.vzhilko.list.data.datasource.ImageListPagingSource
 import by.vzhilko.list.data.dto.ImageDto
 import by.vzhilko.list.data.mapper.ImageDataListMapper
 import by.vzhilko.list.data.repository.ImageListRepository
-import by.vzhilko.list.domain.dto.ImageData
+import by.vzhilko.list.domain.datasource.IImageListPagingSource
+import by.vzhilko.core.dto.ImageData
 import by.vzhilko.list.domain.interactor.ImageListInteractor
 import by.vzhilko.list.domain.repository.IImageListRepository
 import by.vzhilko.list.presentation.viewmodel.ImageListViewModel
@@ -31,11 +33,20 @@ class ImageListModule {
     }
 
     @Provides
-    fun provideImageListRepository(
+    fun provideImageListPagingSource(
         apiService: ImageListApiService,
         mapper: IMapper<List<ImageDto>, List<ImageData>>
+    ): IImageListPagingSource {
+        return ImageListPagingSource(apiService, mapper)
+    }
+
+    @Provides
+    fun provideImageListRepository(
+        apiService: ImageListApiService,
+        mapper: IMapper<List<ImageDto>, List<ImageData>>,
+        pagingSource: IImageListPagingSource
     ): IImageListRepository {
-        return ImageListRepository(apiService, mapper)
+        return ImageListRepository(apiService, mapper, pagingSource)
     }
 
     @IntoMap

@@ -14,8 +14,4 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun startFragment() {
-
-    }
-
 }

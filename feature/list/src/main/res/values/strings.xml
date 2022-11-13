@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image_list_default_error_message">A problem is occurred during the list getting.</string>
+    <string name="image_list_retry_caption">Retry</string>
+    <string name="image_list_details_view_offer_message">Show details?</string>
+</resources>
