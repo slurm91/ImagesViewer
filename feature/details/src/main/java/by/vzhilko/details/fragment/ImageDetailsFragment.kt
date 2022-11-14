@@ -2,7 +2,6 @@ package by.vzhilko.details.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,10 +42,6 @@ class ImageDetailsFragment : BaseFragment<ImageDetailsComponent, ImageDetailsVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("myTag", "ImageListFragment onViewCreated navigator: ${navigator}" +
-                "\nviewModel: ${viewModel}" +
-                "\n data: ${data}"
-        )
         initView()
     }
 

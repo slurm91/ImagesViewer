@@ -2,7 +2,6 @@ package by.vzhilko.list.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +25,13 @@ import by.vzhilko.list.presentation.adapter.ImageDataAdapter
 import by.vzhilko.list.presentation.adapter.ImageDataStateAdapter
 import by.vzhilko.list.presentation.adapter.decoration.ImageDataViewDecoration
 import by.vzhilko.list.presentation.adapter.diffutil.ImageDataDiffUtilItemCallback
-import by.vzhilko.list.presentation.dialog.ImageListDialogFragment
 import by.vzhilko.list.presentation.model.ImageDataListState
 import by.vzhilko.list.presentation.viewmodel.ImageListViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, FragmentImageListBinding>() {
+class ImageListFragment :
+    BaseFragment<ImageListComponent, ImageListViewModel, FragmentImageListBinding>() {
 
     private lateinit var imageDataAdapter: ImageDataAdapter
 
@@ -42,7 +41,8 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
     }
 
     override fun initAndGetComponent(): ImageListComponent {
-        return getDIContainerProvider().getComponentProvider<ImageListComponent.Provider>().getImageListComponent()
+        return getDIContainerProvider().getComponentProvider<ImageListComponent.Provider>()
+            .getImageListComponent()
     }
 
     override fun initAndGetViewModel(): ImageListViewModel {
@@ -62,14 +62,9 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        Log.d("myTag", "ImageListFragment onViewCreated navigator: ${navigator}" +
-                "\nviewModel: ${viewModel}" +
-                "\ncomponent: ${component}"
-        )
     }
 
     private fun initView() {
-        //binding.imageListSearchView.setQuery()
         initSearchView()
         initRecyclerView()
         subscribeOnImageDataLoadState()
@@ -101,7 +96,8 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
             footer = ImageDataStateAdapter(onRetryAction)
         )
 
-        val layoutManager = LinearLayoutManager(requireContext()).apply { orientation = RecyclerView.VERTICAL }
+        val layoutManager =
+            LinearLayoutManager(requireContext()).apply { orientation = RecyclerView.VERTICAL }
         val itemDecoration = ImageDataViewDecoration(requireContext())
         binding.imageListRecyclerView.apply {
             this.adapter = resultAdapter
@@ -114,9 +110,7 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.imageDataPagingDataFlow.collectLatest { pagingData: PagingData<ImageData> ->
-                    Log.d("myTag", "Fragment subscribeOnImageData before pagingData: ${pagingData} thread: ${Thread.currentThread().name}")
                     imageDataAdapter.submitData(pagingData)
-                    Log.d("myTag", "Fragment subscribeOnImageData after pagingData: ${pagingData}")
                 }
             }
         }
@@ -138,10 +132,6 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
                             viewModel.updateImageListState(ImageDataListState.NO_STATE)
                         }
                     }
-                    Log.d("myTag", "Fragment subscribeOnImageDataLoadState state append: ${state.append}" +
-                            " prepend: ${state.prepend}" +
-                            " refresh: ${state.refresh}"
-                    )
                 }
             }
         }
@@ -151,7 +141,6 @@ class ImageListFragment : BaseFragment<ImageListComponent, ImageListViewModel, F
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.imageListRetryStateFlow.collectLatest {
-                    Log.d("myTag", "Fragment subscribeOnImageListRetry")
                     imageDataAdapter.retry()
                 }
             }

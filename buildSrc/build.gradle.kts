@@ -40,7 +40,4 @@ dependencies {
 
     val kotlinGradlePluginVersion = "1.7.20"
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinGradlePluginVersion}")
-
-    val navVersion = "2.5.3"
-    implementation("androidx.navigation:navigation-safe-args-gradle-plugin:$navVersion")
 }

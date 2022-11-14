@@ -1,7 +1,6 @@
 package by.vzhilko.list.presentation.dialog
 
 import android.content.Context
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import by.vzhilko.core.di.IDIContainerProvider
 import by.vzhilko.core.dto.ImageData
@@ -38,7 +37,6 @@ class ImageListDialogFragment : DefaultDialogFragment() {
             .getComponentProvider<ImageListComponent.Provider>()
             .getImageListComponent()
         component.inject(this)
-        Log.d("myTag", "ImageListDialogFragment onAttach component: ${component}")
         super.onAttach(context)
     }
 
