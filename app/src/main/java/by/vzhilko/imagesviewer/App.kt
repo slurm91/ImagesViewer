@@ -8,6 +8,10 @@ class App : Application(), IDIContainerProvider {
 
     override fun onCreate() {
         super.onCreate()
+        init()
+    }
+
+    private fun init() {
         DI.init(this)
     }
 

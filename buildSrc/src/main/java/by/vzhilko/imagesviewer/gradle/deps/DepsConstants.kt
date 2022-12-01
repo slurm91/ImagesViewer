@@ -10,7 +10,7 @@ object DepsConstants {
 
     object Kotlin {
         object Versions {
-            const val COROUTINES: String = "1.3.9"
+            const val COROUTINES: String = "1.6.4"
         }
 
         const val COROUTINES: String = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
@@ -23,6 +23,7 @@ object DepsConstants {
             const val NAVIGATION: String = "2.5.3"
             const val LIFECYCLE: String = "2.5.1"
             const val PAGING: String = "3.1.1"
+            const val ROOM: String = "2.4.3"
         }
 
         const val CORE_KTX: String = "androidx.core:core-ktx:${Versions.CORE_KTX}"
@@ -33,6 +34,10 @@ object DepsConstants {
         const val VIEW_MODEL_SAVED_STATE: String = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.LIFECYCLE}"
         const val LIFECYCLE_COMPILER: String = "androidx.lifecycle:lifecycle-compiler:${Versions.LIFECYCLE}"
         const val PAGING: String = "androidx.paging:paging-runtime:${Versions.PAGING}"
+        const val ROOM: String = "androidx.room:room-runtime:${Versions.ROOM}"
+        const val ROOM_COMPILER: String = "androidx.room:room-compiler:${Versions.ROOM}"
+        const val ROOM_KTX: String = "androidx.room:room-ktx:${Versions.ROOM}"
+        const val ROOM_PAGING: String = "androidx.room:room-paging:${Versions.ROOM}"
     }
 
     object Google {
@@ -65,6 +70,15 @@ object DepsConstants {
         }
 
         const val COIL: String = "io.coil-kt:coil:${Versions.COIL}"
+    }
+
+    object Facebook {
+        object Versions {
+            const val STETHO: String = "1.6.0"
+        }
+
+        const val STETHO: String = "com.facebook.stetho:stetho:${Versions.STETHO}"
+        const val STETHO_OKHTTP: String = "com.facebook.stetho:stetho-okhttp3:${Versions.STETHO}"
     }
 
     object Test {

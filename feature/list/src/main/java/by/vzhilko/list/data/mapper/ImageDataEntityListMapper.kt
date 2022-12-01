@@ -1,15 +1,15 @@
 package by.vzhilko.list.data.mapper
 
+import by.vzhilko.core.datasource.database.room.entity.ImageDataEntity
 import by.vzhilko.core.util.mapper.IMapper
 import by.vzhilko.list.data.dto.ImageDto
-import by.vzhilko.core.dto.ImageData
 import javax.inject.Inject
 
-class ImageDataListMapper @Inject constructor() : IMapper<List<ImageDto>, List<ImageData>> {
+class ImageDataEntityListMapper @Inject constructor() : IMapper<List<ImageDto>, List<ImageDataEntity>> {
 
-    override fun map(from: List<ImageDto>): List<ImageData> {
+    override fun map(from: List<ImageDto>): List<ImageDataEntity> {
         return from.map {
-            ImageData(
+            ImageDataEntity(
                 id = it.id,
                 tags = it.tags,
                 previewUrl = it.previewUrl,

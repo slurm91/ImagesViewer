@@ -1,7 +1,9 @@
 package by.vzhilko.core.datasource.network.retrofit.adapter
 
+import android.content.Context
 import by.vzhilko.core.datasource.network.NetworkState
 import by.vzhilko.core.datasource.network.error.handler.INetworkErrorHandler
+import by.vzhilko.core.util.connectivity.IConnectivityManager
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
@@ -9,7 +11,9 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
 class DefaultRetrofitCallAdapterFactory(
-    private val errorHandler: INetworkErrorHandler
+    private val errorHandler: INetworkErrorHandler,
+    private val connectivityManager: IConnectivityManager,
+    private val context: Context
 ) : CallAdapter.Factory() {
 
     override fun get(
@@ -25,7 +29,7 @@ class DefaultRetrofitCallAdapterFactory(
         return if (upperBound is ParameterizedType && upperBound.rawType == NetworkState::class.java) {
             object : CallAdapter<Any, Call<NetworkState<*>>> {
                 override fun adapt(call: Call<Any>): Call<NetworkState<*>> {
-                    return DefaultRetrofitCall(call, errorHandler)
+                    return DefaultRetrofitCall(call, errorHandler, connectivityManager, context)
                 }
 
                 override fun responseType(): Type {

@@ -2,6 +2,7 @@ package by.vzhilko.list.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.paging.map
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -96,13 +98,15 @@ class ImageListFragment :
             footer = ImageDataStateAdapter(onRetryAction)
         )
 
-        val layoutManager =
-            LinearLayoutManager(requireContext()).apply { orientation = RecyclerView.VERTICAL }
+        val layoutManager = LinearLayoutManager(requireContext()).apply {
+            orientation = RecyclerView.VERTICAL
+        }
         val itemDecoration = ImageDataViewDecoration(requireContext())
         binding.imageListRecyclerView.apply {
             this.adapter = resultAdapter
             this.layoutManager = layoutManager
             addItemDecoration(itemDecoration)
+            setHasFixedSize(true)
         }
     }
 
@@ -110,6 +114,7 @@ class ImageListFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.imageDataPagingDataFlow.collectLatest { pagingData: PagingData<ImageData> ->
+                    //pagingData.map { Log.d("myTag", "fragment image: ${it}") }
                     imageDataAdapter.submitData(pagingData)
                 }
             }
@@ -120,13 +125,21 @@ class ImageListFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 imageDataAdapter.loadStateFlow.collectLatest { state: CombinedLoadStates ->
+                    /*Log.d("myTag", "Fragment state mediator append: ${state.mediator?.append}" +
+                            "\nsource append: ${state.source.append}" +
+                            "\nrefresh mediator: ${state.mediator?.refresh}}"
+                    )*/
                     when (state.refresh) {
                         is LoadState.Loading -> {
                             viewModel.updateImageListState(ImageDataListState.LOADING)
-                            //binding.imageListRecyclerView.scrollToPosition(0)
+                            binding.imageListRecyclerView.scrollToPosition(0)
                         }
                         is LoadState.Error -> {
-                            viewModel.updateImageListState(ImageDataListState.ERROR)
+                            viewModel.updateImageListState(
+                                ImageDataListState.ERROR.apply {
+                                    message = (state.refresh as? LoadState.Error)?.error?.message
+                                }
+                            )
                         }
                         else -> {
                             viewModel.updateImageListState(ImageDataListState.NO_STATE)

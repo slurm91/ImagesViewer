@@ -1,10 +1,13 @@
 package by.vzhilko.core.di.module.network
 
+import android.content.Context
 import by.vzhilko.core.datasource.network.config.IHttpClientConfig
 import by.vzhilko.core.datasource.network.error.handler.INetworkErrorHandler
 import by.vzhilko.core.datasource.network.retrofit.adapter.DefaultRetrofitCallAdapterFactory
 import by.vzhilko.core.datasource.network.retrofit.interceptor.DefaultRetrofitInterceptor
 import by.vzhilko.core.di.annotation.scope.AppScope
+import by.vzhilko.core.util.connectivity.IConnectivityManager
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -47,6 +50,7 @@ class RetrofitModule {
     ): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(StethoInterceptor())
             .addInterceptor(defaultRetrofitInterceptor)
             .build()
     }
@@ -69,9 +73,11 @@ class RetrofitModule {
 
     @Provides
     fun provideDefaultRetrofitCallAdapterFactory(
-        errorHandler: INetworkErrorHandler
+        errorHandler: INetworkErrorHandler,
+        connectivityManager: IConnectivityManager,
+        context: Context
     ): CallAdapter.Factory {
-        return DefaultRetrofitCallAdapterFactory(errorHandler)
+        return DefaultRetrofitCallAdapterFactory(errorHandler, connectivityManager, context)
     }
 
 }

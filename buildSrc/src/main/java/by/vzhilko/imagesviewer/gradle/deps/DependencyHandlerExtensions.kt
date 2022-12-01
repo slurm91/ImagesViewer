@@ -23,3 +23,7 @@ fun DependencyHandler.addKapt(dependency: String) {
     add("kapt", dependency)
 }
 
+fun DependencyHandler.addKsp(dependency: String) {
+    add("ksp", dependency)
+}
+

@@ -2,7 +2,9 @@ package by.vzhilko.imagesviewer.di.component
 
 import android.content.Context
 import by.vzhilko.core.di.annotation.scope.AppScope
+import by.vzhilko.core.di.module.connectivity.ConnectivityManagerModule
 import by.vzhilko.core.di.module.coroutines.CoroutinesModule
+import by.vzhilko.core.di.module.database.DatabaseModule
 import by.vzhilko.core.di.module.network.NetworkModule
 import by.vzhilko.core.ui.navigation.INavigator
 import by.vzhilko.details.di.component.ImageDetailsComponent
@@ -12,7 +14,15 @@ import dagger.BindsInstance
 import dagger.Component
 
 @AppScope
-@Component(modules = [NavigatorModule::class, CoroutinesModule::class, NetworkModule::class])
+@Component(
+    modules = [
+        NavigatorModule::class,
+        CoroutinesModule::class,
+        NetworkModule::class,
+        DatabaseModule::class,
+        ConnectivityManagerModule::class
+    ]
+)
 interface AppComponent : INavigator.Provider,
     ImageListComponent.Provider,
     ImageDetailsComponent.Provider {

@@ -1,7 +1,11 @@
 package by.vzhilko.core.datasource.network.retrofit.adapter
 
+import android.content.Context
+import by.vzhilko.core.R
 import by.vzhilko.core.datasource.network.NetworkState
 import by.vzhilko.core.datasource.network.error.handler.INetworkErrorHandler
+import by.vzhilko.core.util.connectivity.IConnectivityManager
+import by.vzhilko.core.util.connectivity.exception.InternetConnectionException
 import okhttp3.Request
 import okio.Timeout
 import retrofit2.Call
@@ -11,6 +15,8 @@ import retrofit2.Response
 class DefaultRetrofitCall<T : Any>(
     private val delegateCall: Call<T>,
     private val errorHandler: INetworkErrorHandler,
+    private val connectivityManager: IConnectivityManager,
+    private val context: Context
 ) : Call<NetworkState<T>> {
 
     override fun enqueue(callback: Callback<NetworkState<T>>) {
@@ -35,12 +41,15 @@ class DefaultRetrofitCall<T : Any>(
             }
 
             override fun onFailure(call: Call<T>, t: Throwable) {
+                val error: Throwable = if (!connectivityManager.isConnected()) {
+                    InternetConnectionException(context.getString(R.string.no_internet_connection_message))
+                } else {
+                    errorHandler.handleError(-1, t.message)
+                }
                 callback.onResponse(
                     this@DefaultRetrofitCall,
                     Response.success(
-                        NetworkState.Error(
-                            errorHandler.handleError(-1, t.message)
-                        )
+                        NetworkState.Error(error)
                     )
                 )
             }
@@ -48,7 +57,7 @@ class DefaultRetrofitCall<T : Any>(
     }
 
     override fun clone(): Call<NetworkState<T>> {
-        return DefaultRetrofitCall(delegateCall.clone(), errorHandler)
+        return DefaultRetrofitCall(delegateCall.clone(), errorHandler, connectivityManager, context)
     }
 
     override fun execute(): Response<NetworkState<T>> {

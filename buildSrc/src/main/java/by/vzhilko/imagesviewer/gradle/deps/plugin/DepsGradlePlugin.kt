@@ -46,6 +46,7 @@ class DepsGradlePlugin : Plugin<Project> {
         addGoogleDependencies(target)
         addSquareupDependencies(target)
         addCoilDependencies(target)
+        //addFacebookDependencies(target)
     }
 
     private fun addKotlinDependencies(target: Project) {
@@ -64,6 +65,10 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Androidx.VIEW_MODEL_SAVED_STATE)
             addKapt(DepsConstants.Androidx.LIFECYCLE_COMPILER)
             addImplementation(DepsConstants.Androidx.PAGING)
+            addImplementation(DepsConstants.Androidx.ROOM)
+            addImplementation(DepsConstants.Androidx.ROOM_KTX)
+            addImplementation(DepsConstants.Androidx.ROOM_PAGING)
+            addKapt(DepsConstants.Androidx.ROOM_COMPILER)
         }
     }
 
@@ -87,6 +92,13 @@ class DepsGradlePlugin : Plugin<Project> {
     private fun addCoilDependencies(target: Project) {
         target.dependencies.apply {
             addImplementation(DepsConstants.Coil.COIL)
+        }
+    }
+
+    private fun addFacebookDependencies(target: Project) {
+        target.dependencies.apply {
+            addImplementation(DepsConstants.Facebook.STETHO)
+            addImplementation(DepsConstants.Facebook.STETHO_OKHTTP)
         }
     }
     //endregion

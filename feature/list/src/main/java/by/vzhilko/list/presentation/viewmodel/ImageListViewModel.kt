@@ -15,7 +15,7 @@ class ImageListViewModel(
     private val interactor: ImageListInteractor
 ) : BaseViewModel() {
 
-    private val _queryStateFlow: MutableStateFlow<String> = MutableStateFlow("fruits")
+    private val _queryStateFlow: MutableStateFlow<String> = MutableStateFlow("fruits strawberry")
     val queryStateFlow: StateFlow<String> = _queryStateFlow.asStateFlow()
 
     private val _imageListStateStateFlow: MutableStateFlow<ImageDataListState> =
