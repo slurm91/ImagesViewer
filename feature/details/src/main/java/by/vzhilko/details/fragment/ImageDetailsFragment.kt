@@ -26,8 +26,8 @@ class ImageDetailsFragment : BaseFragment<ImageDetailsComponent, ImageDetailsVie
         return getDIContainerProvider().getComponentProvider<ImageDetailsComponent.Provider>().getImageDetailsComponent()
     }
 
-    override fun initAndGetViewModel(): ImageDetailsViewModel {
-        return ViewModelProvider(this, getViewModelFactory())[ImageDetailsViewModel::class.java]
+    override fun initAndGetViewModel(savedInstanceState: Bundle?): ImageDetailsViewModel {
+        return ViewModelProvider(this, getAbstractSavedStateViewModelFactory(savedInstanceState))[ImageDetailsViewModel::class.java]
     }
 
     override fun initAndGetView(

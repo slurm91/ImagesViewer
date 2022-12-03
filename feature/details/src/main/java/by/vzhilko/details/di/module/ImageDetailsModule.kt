@@ -7,14 +7,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
 
-@Module
+@Module(includes = [AbstractImageDetailsModule::class])
 class ImageDetailsModule {
 
-    @IntoMap
+    /*@IntoMap
     @ViewModelKey(ImageDetailsViewModel::class)
     @Provides
     fun provideImageDetailsViewModel(): ViewModel {
         return ImageDetailsViewModel()
-    }
+    }*/
 
 }

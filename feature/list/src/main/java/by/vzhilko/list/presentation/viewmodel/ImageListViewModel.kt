@@ -1,27 +1,36 @@
 package by.vzhilko.list.presentation.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import by.vzhilko.core.ui.viewmodel.BaseViewModel
 import by.vzhilko.core.dto.ImageData
+import by.vzhilko.core.ui.viewmodel.AssistedSavedStateViewModelFactory
+import by.vzhilko.core.ui.viewmodel.BaseSavedStateViewModel
 import by.vzhilko.list.domain.interactor.ImageListInteractor
 import by.vzhilko.list.presentation.model.ImageDataListState
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class ImageListViewModel(
-    private val interactor: ImageListInteractor
-) : BaseViewModel() {
+private const val IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY: String = "IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY"
+private const val IMAGE_LIST_QUERY_DEFAULT_VALUE: String = "fruits"
 
-    private val _queryStateFlow: MutableStateFlow<String> = MutableStateFlow("fruits strawberry")
-    val queryStateFlow: StateFlow<String> = _queryStateFlow.asStateFlow()
+class ImageListViewModel @AssistedInject constructor (
+    private val interactor: ImageListInteractor,
+    @Assisted savedStateHandle: SavedStateHandle
+) : BaseSavedStateViewModel(savedStateHandle) {
 
-    private val _imageListStateStateFlow: MutableStateFlow<ImageDataListState> =
-        MutableStateFlow(ImageDataListState.NO_STATE)
-    val imageListStateStateFlow: StateFlow<ImageDataListState> =
-        _imageListStateStateFlow.asStateFlow()
+    val queryStateFlow: StateFlow<String> = savedStateHandle.getStateFlow(
+        IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY,
+        IMAGE_LIST_QUERY_DEFAULT_VALUE
+    )
+
+    private val _imageListStateStateFlow: MutableStateFlow<ImageDataListState> = MutableStateFlow(ImageDataListState.NO_STATE)
+    val imageListStateStateFlow: StateFlow<ImageDataListState> = _imageListStateStateFlow.asStateFlow()
 
     private val _imageListRetryStateFlow: MutableSharedFlow<Unit> = MutableSharedFlow(replay = 0)
     val imageListRetryStateFlow: SharedFlow<Unit> = _imageListRetryStateFlow.asSharedFlow()
@@ -35,8 +44,8 @@ class ImageListViewModel(
             .cachedIn(viewModelScope)
 
     fun updateQuery(query: String?) {
-        if (query != _queryStateFlow.value) {
-            _queryStateFlow.value = query ?: ""
+        if (query != queryStateFlow.value) {
+            savedStateHandle?.set(IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY, query)
         }
     }
 
@@ -49,5 +58,8 @@ class ImageListViewModel(
     fun updateImageListState(state: ImageDataListState) {
         _imageListStateStateFlow.value = state
     }
+
+    @AssistedFactory
+    interface Factory : AssistedSavedStateViewModelFactory<ImageListViewModel>
 
 }

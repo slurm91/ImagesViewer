@@ -10,7 +10,7 @@ class ImageDataEntityListMapper @Inject constructor() : IMapper<List<ImageDto>, 
     override fun map(from: List<ImageDto>): List<ImageDataEntity> {
         return from.map {
             ImageDataEntity(
-                id = it.id,
+                imageDataId = it.id,
                 tags = it.tags,
                 previewUrl = it.previewUrl,
                 largeImageUrl = it.largeImageUrl,

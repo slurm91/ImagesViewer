@@ -7,7 +7,6 @@ import by.vzhilko.core.datasource.network.retrofit.adapter.DefaultRetrofitCallAd
 import by.vzhilko.core.datasource.network.retrofit.interceptor.DefaultRetrofitInterceptor
 import by.vzhilko.core.di.annotation.scope.AppScope
 import by.vzhilko.core.util.connectivity.IConnectivityManager
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -50,7 +49,6 @@ class RetrofitModule {
     ): OkHttpClient {
         return OkHttpClient().newBuilder()
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(StethoInterceptor())
             .addInterceptor(defaultRetrofitInterceptor)
             .build()
     }

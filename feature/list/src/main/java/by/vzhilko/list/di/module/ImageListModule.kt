@@ -22,7 +22,7 @@ import dagger.Provides
 import dagger.multibindings.IntoMap
 import retrofit2.Retrofit
 
-@Module
+@Module(includes = [AbstractImageListModule::class])
 class ImageListModule {
 
     @Provides
@@ -53,11 +53,11 @@ class ImageListModule {
         return ImageListRepository(apiService, database, imageDataEntityListMapper, imageDataMapper, connectivityManager)
     }
 
-    @IntoMap
+    /*@IntoMap
     @ViewModelKey(ImageListViewModel::class)
     @Provides
     fun provideImageListViewModel(interactor: ImageListInteractor): ViewModel {
         return ImageListViewModel(interactor)
-    }
+    }*/
 
 }

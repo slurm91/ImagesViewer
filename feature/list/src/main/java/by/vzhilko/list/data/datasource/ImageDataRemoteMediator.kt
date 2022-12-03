@@ -63,9 +63,8 @@ class ImageDataRemoteMediator(
         return when (loadType) {
             LoadType.REFRESH -> {
                 val position: Int = state.anchorPosition?.let { position: Int ->
-                    state.closestItemToPosition(position)?.id?.let { imageDataId: Int ->
-                        database.remoteImageDataKeyDao()
-                            .getRemoteKeyById(imageDataId).nextPage?.minus(1)
+                    state.closestItemToPosition(position)?.imageDataId?.let { imageDataId: Int ->
+                        database.remoteImageDataKeyDao().getRemoteKeyById(imageDataId).nextPage?.minus(1)
                     }
                 } ?: IMAGE_LIST_START_PAGE_NUMBER
                 position
@@ -75,7 +74,7 @@ class ImageDataRemoteMediator(
                     .firstOrNull { it.data.isNotEmpty() }
                     ?.data?.firstOrNull()
                     ?.let { data ->
-                        database.remoteImageDataKeyDao().getRemoteKeyById(data.id)
+                        database.remoteImageDataKeyDao().getRemoteKeyById(data.imageDataId)
                     }
                     ?.previousPage
                 page
@@ -85,7 +84,7 @@ class ImageDataRemoteMediator(
                     .lastOrNull { it.data.isNotEmpty() }
                     ?.data?.lastOrNull()
                     ?.let { data ->
-                        database.remoteImageDataKeyDao().getRemoteKeyById(data.id)
+                        database.remoteImageDataKeyDao().getRemoteKeyById(data.imageDataId)
                     }
                     ?.nextPage
                 page
@@ -124,7 +123,7 @@ class ImageDataRemoteMediator(
 
                     val remoteKeys: List<RemoteImageDataKeyEntity> = state.response.hits.map {
                         RemoteImageDataKeyEntity(
-                            id = it.id,
+                            imageDataId = it.id,
                             previousPage = if (page == IMAGE_LIST_START_PAGE_NUMBER) null else page - 1,
                             nextPage = page + 1
                         )

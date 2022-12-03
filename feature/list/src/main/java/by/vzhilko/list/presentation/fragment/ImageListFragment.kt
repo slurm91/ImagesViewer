@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -23,6 +20,9 @@ import by.vzhilko.core.ui.fragment.BaseFragment
 import by.vzhilko.list.databinding.FragmentImageListBinding
 import by.vzhilko.list.di.component.ImageListComponent
 import by.vzhilko.core.dto.ImageData
+import by.vzhilko.core.ui.viewmodel.SavedStateViewModelFactory
+import by.vzhilko.core.ui.viewmodel.SavedStateViewModelFactoryProvider
+import by.vzhilko.core.ui.viewmodel.ViewModelFactoryProvider
 import by.vzhilko.list.presentation.adapter.ImageDataAdapter
 import by.vzhilko.list.presentation.adapter.ImageDataStateAdapter
 import by.vzhilko.list.presentation.adapter.decoration.ImageDataViewDecoration
@@ -47,8 +47,8 @@ class ImageListFragment :
             .getImageListComponent()
     }
 
-    override fun initAndGetViewModel(): ImageListViewModel {
-        return ViewModelProvider(this, getViewModelFactory())[ImageListViewModel::class.java]
+    override fun initAndGetViewModel(savedInstanceState: Bundle?): ImageListViewModel {
+        return ViewModelProvider(this, getAbstractSavedStateViewModelFactory(savedInstanceState))[ImageListViewModel::class.java]
     }
 
     override fun initAndGetView(
@@ -132,7 +132,6 @@ class ImageListFragment :
                     when (state.refresh) {
                         is LoadState.Loading -> {
                             viewModel.updateImageListState(ImageDataListState.LOADING)
-                            binding.imageListRecyclerView.scrollToPosition(0)
                         }
                         is LoadState.Error -> {
                             viewModel.updateImageListState(

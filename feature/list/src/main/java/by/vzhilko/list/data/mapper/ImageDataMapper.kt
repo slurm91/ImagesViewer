@@ -9,7 +9,7 @@ class ImageDataMapper @Inject constructor() : IMapper<ImageDataEntity, ImageData
 
     override fun map(from: ImageDataEntity): ImageData {
         return ImageData(
-            id = from.id,
+            id = from.imageDataId,
             tags = from.tags,
             previewUrl = from.previewUrl,
             largeImageUrl = from.largeImageUrl,
