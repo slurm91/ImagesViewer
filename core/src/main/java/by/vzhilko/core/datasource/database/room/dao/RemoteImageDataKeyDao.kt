@@ -20,4 +20,7 @@ interface RemoteImageDataKeyDao {
     @Query("DELETE FROM $REMOTE_IMAGE_DATA_KEY_TABLE_NAME")
     suspend fun deleteAll()
 
+    @Query("SELECT COUNT(*) FROM $REMOTE_IMAGE_DATA_KEY_TABLE_NAME")
+    suspend fun getKeysCount(): Int
+
 }

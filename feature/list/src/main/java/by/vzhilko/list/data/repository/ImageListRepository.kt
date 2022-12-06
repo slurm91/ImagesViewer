@@ -39,7 +39,7 @@ class ImageListRepository @Inject constructor(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    fun subscribeOnAndGetImageEntityListPage(query: String?): Flow<PagingData<ImageDataEntity>> {
+    private fun subscribeOnAndGetImageEntityListPage(query: String?): Flow<PagingData<ImageDataEntity>> {
         return Pager(
             config = PagingConfig(
                 initialLoadSize = IMAGE_LIST_INITIAL_LOAD_PAGE_SIZE,

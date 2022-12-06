@@ -46,7 +46,6 @@ class DepsGradlePlugin : Plugin<Project> {
         addGoogleDependencies(target)
         addSquareupDependencies(target)
         addCoilDependencies(target)
-        //addFacebookDependencies(target)
     }
 
     private fun addKotlinDependencies(target: Project) {
@@ -107,6 +106,9 @@ class DepsGradlePlugin : Plugin<Project> {
     private fun addTestDependencies(target: Project) {
         target.dependencies.apply {
             addTestImplementation(DepsConstants.Test.JUNIT)
+            addTestImplementation(DepsConstants.Test.MOCKITO_KOTLIN)
+            addTestImplementation(DepsConstants.Test.COROUTINES_TEST)
+            addAndroidTestImplementation(DepsConstants.Test.COROUTINES_TEST)
             addAndroidTestImplementation(DepsConstants.Test.JUNIT_EXT)
             addAndroidTestImplementation(DepsConstants.Test.ESPRESSO_CORE)
         }
