@@ -108,6 +108,8 @@ class DepsGradlePlugin : Plugin<Project> {
             addTestImplementation(DepsConstants.Test.JUNIT)
             addTestImplementation(DepsConstants.Test.MOCKITO_KOTLIN)
             addTestImplementation(DepsConstants.Test.COROUTINES_TEST)
+            addAndroidTestImplementation(DepsConstants.Test.MOCKITO_KOTLIN)
+            addAndroidTestImplementation(DepsConstants.Test.MOCKITO_ANDROID)
             addAndroidTestImplementation(DepsConstants.Test.COROUTINES_TEST)
             addAndroidTestImplementation(DepsConstants.Test.JUNIT_EXT)
             addAndroidTestImplementation(DepsConstants.Test.ESPRESSO_CORE)

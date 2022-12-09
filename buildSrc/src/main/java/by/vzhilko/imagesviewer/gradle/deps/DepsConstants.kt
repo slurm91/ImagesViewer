@@ -85,16 +85,20 @@ object DepsConstants {
         object Versions {
             const val JUNIT: String = "4.13.2"
             const val JUNIT_EXT: String = "1.1.3"
+            const val MOCKITO_CORE: String = "4.9.0"
             const val MOCKITO_KOTLIN = "4.1.0"
+            const val MOCKITO_ANDROID = "4.9.0"
             const val COROUTINES_TEST: String = "1.6.4"
             const val ESPRESSO_CORE: String = "3.4.0"
         }
 
         const val JUNIT: String = "junit:junit:${Versions.JUNIT}"
         const val JUNIT_EXT: String = "androidx.test.ext:junit:${Versions.JUNIT_EXT}"
-        const val MOCKITO_KOTLIN = "org.mockito.kotlin:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
         const val COROUTINES_TEST: String = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES_TEST}"
         const val ESPRESSO_CORE: String = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
+        const val MOCKITO_CORE: String = "org.mockito:mockito-core:${Versions.MOCKITO_CORE}"
+        const val MOCKITO_KOTLIN = "org.mockito.kotlin:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
+        const val MOCKITO_ANDROID = "org.mockito:mockito-android:${Versions.MOCKITO_ANDROID}"
     }
 
 }
