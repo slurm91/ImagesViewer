@@ -53,6 +53,56 @@ fun getImageDtoFruitList(): List<ImageDto> {
             likes = 1050,
             comments = 172,
             user = "Bru-nO"
+        ),
+        ImageDto(
+            id = 1873078,
+            tags = "apples, orchard, apple trees",
+            previewUrl = "https://cdn.pixabay.com/photo/2016/11/30/15/23/apples-1873078_150.jpg",
+            largeImageUrl = "https://pixabay.com/get/g723696c1ed569690f6c63e4641c55e13ea1b0d45323dc80134dbd4b5f03ba35f9f8bfb0e9c6f7c8accbf6a29396ae627c2b800fb3c436687bb8309fa0a46c27f_1280.jpg",
+            downloads = 231989,
+            likes = 1113,
+            comments = 168,
+            user = "lumix2004"
+        ),
+        ImageDto(
+            id = 1122537,
+            tags = "apple, water droplets, fruit",
+            previewUrl = "https://cdn.pixabay.com/photo/2016/01/05/13/58/apple-1122537_150.jpg",
+            largeImageUrl = "https://pixabay.com/get/gcdc6b3dacb01c5e48930a32bbc5887f2330ad4029ce56bb29c9a1317d62584a1bb80359065f35b027a69b35d35a2189d4ca5a6abc2c2bbfb7f2f10245d18c888_1280.jpg",
+            downloads = 172989,
+            likes = 1110,
+            comments = 179,
+            user = "mploscar"
+        ),
+        ImageDto(
+            id = 2305192,
+            tags = "fresh fruits, bowls, fruit bowls",
+            previewUrl = "https://cdn.pixabay.com/photo/2017/05/11/19/44/fresh-fruits-2305192_150.jpg",
+            largeImageUrl = "https://pixabay.com/get/gbc83a173447fed975431d620b517e4483a44d55ce331e41888fc7908e296d5582439ec6e43048d94cf3f169abe6321b7a2598d27d2abe30ad2df9024811f5a57_1280.jpg",
+            downloads = 230923,
+            likes = 1112,
+            comments = 212,
+            user = "silviarita"
+        ),
+        ImageDto(
+            id = 2756467,
+            tags = "salad, fruit, berry",
+            previewUrl = "https://cdn.pixabay.com/photo/2017/09/16/19/21/salad-2756467_150.jpg",
+            largeImageUrl = "https://pixabay.com/get/gaf1357e47a5b398159ff95e529b99b18ac6e8f14acc266c42eec068c9ee0f9fd232cadadedb385b5b1d7b07b2fdb87a8eea49a16e1bfaf2d82aff54a7da90ae7_1280.jpg",
+            downloads = 313319,
+            likes = 1118,
+            comments = 300,
+            user = "silviarita"
+        ),
+        ImageDto(
+            id = 2023404,
+            tags = "raspberries, fresh, bowl",
+            previewUrl = "https://cdn.pixabay.com/photo/2017/01/31/09/30/raspberries-2023404_150.jpg",
+            largeImageUrl = "https://pixabay.com/get/g953e6d9c3efa27a4a792bf8a8f3e0079fe423aa5cd12426274254ce9140adf53e7ea0326f589cb5900e793a1ed0389938928ca9244f9bc7eeab6a310ca9a4c75_1280.jpg",
+            downloads = 218645,
+            likes = 1074,
+            comments = 108,
+            user = "Daria-Yakovleva"
         )
     )
 }
