@@ -68,6 +68,8 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Androidx.ROOM_KTX)
             addImplementation(DepsConstants.Androidx.ROOM_PAGING)
             addKapt(DepsConstants.Androidx.ROOM_COMPILER)
+            addDebugImplementation(DepsConstants.Test.FRAGMENT_TESTING)
+            addDebugImplementation(DepsConstants.Test.MONITOR)
         }
     }
 

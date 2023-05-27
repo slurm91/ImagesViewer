@@ -27,3 +27,7 @@ fun DependencyHandler.addKsp(dependency: String) {
     add("ksp", dependency)
 }
 
+fun DependencyHandler.addDebugImplementation(dependency: String) {
+    add("debugImplementation", dependency)
+}
+

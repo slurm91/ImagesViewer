@@ -90,6 +90,8 @@ object DepsConstants {
             const val MOCKITO_ANDROID = "4.9.0"
             const val COROUTINES_TEST: String = "1.6.4"
             const val ESPRESSO_CORE: String = "3.4.0"
+            const val FRAGMENT_TESTING: String = "1.5.5"
+            const val MONITOR: String = "1.6.1"
         }
 
         const val JUNIT: String = "junit:junit:${Versions.JUNIT}"
@@ -97,8 +99,10 @@ object DepsConstants {
         const val COROUTINES_TEST: String = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES_TEST}"
         const val ESPRESSO_CORE: String = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
         const val MOCKITO_CORE: String = "org.mockito:mockito-core:${Versions.MOCKITO_CORE}"
-        const val MOCKITO_KOTLIN = "org.mockito.kotlin:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
-        const val MOCKITO_ANDROID = "org.mockito:mockito-android:${Versions.MOCKITO_ANDROID}"
+        const val MOCKITO_KOTLIN: String = "org.mockito.kotlin:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
+        const val MOCKITO_ANDROID: String = "org.mockito:mockito-android:${Versions.MOCKITO_ANDROID}"
+        const val FRAGMENT_TESTING: String = "androidx.fragment:fragment-testing:${Versions.FRAGMENT_TESTING}"
+        const val MONITOR: String = "androidx.test:monitor:${Versions.MONITOR}"
     }
 
 }
