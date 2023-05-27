@@ -35,7 +35,7 @@ gradlePlugin {
 }
 
 dependencies {
-    val gradlePluginVersion = "7.3.1"
+    val gradlePluginVersion = "7.4.2"
     implementation("com.android.tools.build:gradle:${gradlePluginVersion}")
 
     val kotlinGradlePluginVersion = "1.7.20"
