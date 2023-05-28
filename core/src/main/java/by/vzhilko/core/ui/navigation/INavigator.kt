@@ -9,8 +9,4 @@ interface INavigator {
 
     fun openImageListDialogFragment(navController: NavController, data: ImageData)
 
-    interface Provider {
-        fun getNavigator(): INavigator
-    }
-
 }

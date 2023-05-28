@@ -5,10 +5,12 @@ import by.vzhilko.core.datasource.network.config.IHttpClientConfig
 import by.vzhilko.core.datasource.network.error.handler.INetworkErrorHandler
 import by.vzhilko.core.datasource.network.retrofit.adapter.DefaultRetrofitCallAdapterFactory
 import by.vzhilko.core.datasource.network.retrofit.interceptor.DefaultRetrofitInterceptor
-import by.vzhilko.core.di.annotation.scope.AppScope
 import by.vzhilko.core.util.connectivity.IConnectivityManager
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,11 +19,13 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
+import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 class RetrofitModule {
 
-    @AppScope
+    @Singleton
     @Provides
     fun provideRetrofit(
         httpClientConfig: IHttpClientConfig,
@@ -73,7 +77,7 @@ class RetrofitModule {
     fun provideDefaultRetrofitCallAdapterFactory(
         errorHandler: INetworkErrorHandler,
         connectivityManager: IConnectivityManager,
-        context: Context
+        @ApplicationContext context: Context
     ): CallAdapter.Factory {
         return DefaultRetrofitCallAdapterFactory(errorHandler, connectivityManager, context)
     }

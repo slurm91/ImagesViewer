@@ -40,4 +40,7 @@ dependencies {
 
     val kotlinGradlePluginVersion = "1.7.20"
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinGradlePluginVersion}")
+
+    val kaptGradlePlugin = "2.44"
+    implementation("com.google.dagger:hilt-android-gradle-plugin:${kaptGradlePlugin}")
 }

@@ -4,24 +4,23 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import by.vzhilko.core.dto.ImageData
-import by.vzhilko.core.ui.viewmodel.AssistedSavedStateViewModelFactory
 import by.vzhilko.core.ui.viewmodel.BaseSavedStateViewModel
 import by.vzhilko.list.domain.interactor.ImageListInteractor
 import by.vzhilko.list.presentation.model.ImageDataListState
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 private const val IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY: String = "IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY"
 private const val IMAGE_LIST_QUERY_DEFAULT_VALUE: String = "fruits"
 
-class ImageListViewModel @AssistedInject constructor (
+@HiltViewModel
+class ImageListViewModel @Inject constructor (
     private val interactor: ImageListInteractor,
-    @Assisted savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : BaseSavedStateViewModel(savedStateHandle) {
 
     val queryStateFlow: StateFlow<String> = savedStateHandle.getStateFlow(
@@ -58,8 +57,5 @@ class ImageListViewModel @AssistedInject constructor (
     fun updateImageListState(state: ImageDataListState) {
         _imageListStateStateFlow.value = state
     }
-
-    @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<ImageListViewModel>
 
 }

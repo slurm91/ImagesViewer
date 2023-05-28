@@ -6,7 +6,10 @@ import by.vzhilko.core.datasource.network.error.handler.DefaultNetworkErrorHandl
 import by.vzhilko.core.datasource.network.error.handler.INetworkErrorHandler
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module(includes = [RetrofitModule::class])
 interface NetworkModule {
 

@@ -2,6 +2,7 @@ import by.vzhilko.imagesviewer.gradle.deps.DepsType
 import by.vzhilko.imagesviewer.gradle.deps.plugin.*
 import by.vzhilko.imagesviewer.gradle.android.plugin.*
 import by.vzhilko.imagesviewer.gradle.ExtensionsFactoryPlugin
+import by.vzhilko.imagesviewer.gradle.kapt.KaptGradlePlugin
 import kotlin.collections.*
 
 //region Block 'plugins { }'
@@ -27,6 +28,10 @@ android {
     namespace = "by.vzhilko.list"
 }
 apply<AndroidGradlePlugin>()
+//endregion
+
+//region Block 'kapt { }'
+apply<KaptGradlePlugin>()
 //endregion
 
 //region Block 'dependencies { }'

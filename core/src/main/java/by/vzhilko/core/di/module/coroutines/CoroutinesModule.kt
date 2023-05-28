@@ -4,9 +4,12 @@ import by.vzhilko.core.di.annotation.coroutines.IO
 import by.vzhilko.core.di.annotation.coroutines.Main
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
+@InstallIn(SingletonComponent::class)
 @Module
 class CoroutinesModule {
 

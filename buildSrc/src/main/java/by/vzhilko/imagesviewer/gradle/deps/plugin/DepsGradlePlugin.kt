@@ -78,6 +78,8 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Google.MATERIAL)
             addImplementation(DepsConstants.Google.DAGGER)
             addKapt(DepsConstants.Google.DAGGER_COMPILER)
+            addImplementation(DepsConstants.Google.HILT)
+            addKapt(DepsConstants.Google.HILT_COMPILER)
             addImplementation(DepsConstants.Google.GSON)
         }
     }

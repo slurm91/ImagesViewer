@@ -14,6 +14,7 @@ class PluginsGradlePlugin : Plugin<Project> {
             plugin("org.jetbrains.kotlin.android")
             plugin("kotlin-kapt")
             plugin("kotlin-parcelize")
+            plugin("com.google.dagger.hilt.android")
         }
     }
 

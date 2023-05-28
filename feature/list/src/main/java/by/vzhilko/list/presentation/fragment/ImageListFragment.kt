@@ -1,55 +1,38 @@
 package by.vzhilko.list.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.PagingData
-import androidx.paging.map
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import by.vzhilko.core.ui.fragment.BaseFragment
 import by.vzhilko.list.databinding.FragmentImageListBinding
-import by.vzhilko.list.di.component.ImageListComponent
 import by.vzhilko.core.dto.ImageData
-import by.vzhilko.core.ui.viewmodel.SavedStateViewModelFactory
-import by.vzhilko.core.ui.viewmodel.SavedStateViewModelFactoryProvider
-import by.vzhilko.core.ui.viewmodel.ViewModelFactoryProvider
+import by.vzhilko.core.ui.fragment.BaseFragment
 import by.vzhilko.list.presentation.adapter.ImageDataAdapter
 import by.vzhilko.list.presentation.adapter.ImageDataStateAdapter
 import by.vzhilko.list.presentation.adapter.decoration.ImageDataViewDecoration
 import by.vzhilko.list.presentation.adapter.diffutil.ImageDataDiffUtilItemCallback
 import by.vzhilko.list.presentation.model.ImageDataListState
 import by.vzhilko.list.presentation.viewmodel.ImageListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class ImageListFragment :
-    BaseFragment<ImageListComponent, ImageListViewModel, FragmentImageListBinding>() {
+@AndroidEntryPoint
+class ImageListFragment : BaseFragment<ImageListViewModel, FragmentImageListBinding>() {
+
+    override val viewModel: ImageListViewModel by viewModels()
 
     private lateinit var imageDataAdapter: ImageDataAdapter
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        component.inject(this)
-    }
-
-    override fun initAndGetComponent(): ImageListComponent {
-        return getDIContainerProvider().getComponentProvider<ImageListComponent.Provider>()
-            .getImageListComponent()
-    }
-
-    override fun initAndGetViewModel(savedInstanceState: Bundle?): ImageListViewModel {
-        return ViewModelProvider(this, getAbstractSavedStateViewModelFactory(savedInstanceState))[ImageListViewModel::class.java]
-    }
 
     override fun initAndGetView(
         inflater: LayoutInflater,

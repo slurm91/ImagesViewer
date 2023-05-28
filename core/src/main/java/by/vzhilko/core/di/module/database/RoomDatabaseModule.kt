@@ -4,17 +4,21 @@ import android.content.Context
 import androidx.room.Room
 import by.vzhilko.core.datasource.database.config.IDatabaseConfig
 import by.vzhilko.core.datasource.database.room.AppRoomDatabase
-import by.vzhilko.core.di.annotation.scope.AppScope
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 class RoomDatabaseModule {
 
-    @AppScope
+    @Singleton
     @Provides
     fun provideRoomDatabase(
-        context: Context,
+        @ApplicationContext context: Context,
         config: IDatabaseConfig
     ): AppRoomDatabase {
         return Room.databaseBuilder(

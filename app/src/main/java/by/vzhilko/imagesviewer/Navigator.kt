@@ -2,12 +2,12 @@ package by.vzhilko.imagesviewer
 
 import android.os.Bundle
 import androidx.navigation.NavController
-import by.vzhilko.core.di.annotation.scope.AppScope
 import by.vzhilko.core.dto.ImageData
 import by.vzhilko.core.ui.navigation.INavigator
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@AppScope
+@Singleton
 class Navigator @Inject constructor() : INavigator {
 
     override fun openImageDetailsFragment(navController: NavController, data: ImageData) {

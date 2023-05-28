@@ -1,9 +1,9 @@
 package by.vzhilko.core.datasource.network.config
 
-import by.vzhilko.core.di.annotation.scope.AppScope
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@AppScope
+@Singleton
 class DefaultHttpClientConfig @Inject constructor() : IHttpClientConfig {
 
     override val apiKey: String get() = "31038638-96c07492393e34978fcacec93"

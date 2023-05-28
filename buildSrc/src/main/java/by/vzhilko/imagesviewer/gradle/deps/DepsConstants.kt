@@ -44,12 +44,15 @@ object DepsConstants {
         object Versions {
             const val MATERIAL: String = "1.7.0"
             const val DAGGER: String = "2.44"
+            const val HILT: String = "2.44"
             const val GSON: String = "2.10"
         }
 
         const val MATERIAL: String = "com.google.android.material:material:${Versions.MATERIAL}"
         const val DAGGER: String = "com.google.dagger:dagger:${Versions.DAGGER}"
         const val DAGGER_COMPILER: String = "com.google.dagger:dagger-compiler:${Versions.DAGGER}"
+        const val HILT: String = "com.google.dagger:hilt-android:${Versions.HILT}"
+        const val HILT_COMPILER: String = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
         const val GSON: String = "com.google.code.gson:gson:${Versions.GSON}"
     }
 

@@ -1,9 +1,9 @@
 package by.vzhilko.core.datasource.database.config
 
-import by.vzhilko.core.di.annotation.scope.AppScope
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@AppScope
+@Singleton
 class DefaultDatabaseConfig @Inject constructor() : IDatabaseConfig {
 
     override fun getDatabaseName(): String {

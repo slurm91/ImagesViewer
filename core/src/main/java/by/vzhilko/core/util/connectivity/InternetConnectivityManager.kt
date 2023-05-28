@@ -6,17 +6,21 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import androidx.core.content.getSystemService
-import by.vzhilko.core.di.annotation.scope.AppScope
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@AppScope
-class InternetConnectivityManager @Inject constructor(private val context: Context) : IConnectivityManager {
+@Singleton
+class InternetConnectivityManager @Inject constructor(
+    @ApplicationContext private val context: Context
+) : IConnectivityManager {
 
     @SuppressLint("MissingPermission")
     override fun isConnected(): Boolean {
         val connectivityManager: ConnectivityManager = context.getSystemService() ?: return false
         val network: Network = connectivityManager.activeNetwork ?: return false
-        val networkCapabilities: NetworkCapabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        val networkCapabilities: NetworkCapabilities =
+            connectivityManager.getNetworkCapabilities(network) ?: return false
 
         return when {
             networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
