@@ -70,6 +70,12 @@ class DepsGradlePlugin : Plugin<Project> {
             addKapt(DepsConstants.Androidx.ROOM_COMPILER)
             addDebugImplementation(DepsConstants.Test.FRAGMENT_TESTING)
             addDebugImplementation(DepsConstants.Test.MONITOR)
+            addImplementation(DepsConstants.Androidx.COMPOSE_RUNTIME)
+            addImplementation(DepsConstants.Androidx.COMPOSE_MATERIAL3)
+            addImplementation(DepsConstants.Androidx.COMPOSE_UI_TOOLING_PREVIEW)
+            addDebugImplementation(DepsConstants.Androidx.COMPOSE_UI_TOOLING)
+            addImplementation(DepsConstants.Androidx.COMPOSE_ACTIVITY)
+            addImplementation(DepsConstants.Androidx.COMPOSE_LIFECYCLE_VIEWMODEL)
         }
     }
 

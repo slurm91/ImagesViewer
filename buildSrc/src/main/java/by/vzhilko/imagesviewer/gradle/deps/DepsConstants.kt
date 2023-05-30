@@ -19,11 +19,15 @@ object DepsConstants {
     object Androidx {
         object Versions {
             const val CORE_KTX: String = "1.9.0"
-            const val APPCOMPAT: String = "1.5.1"
+            const val APPCOMPAT: String = "1.6.1"
             const val NAVIGATION: String = "2.5.3"
             const val LIFECYCLE: String = "2.5.1"
             const val PAGING: String = "3.1.1"
             const val ROOM: String = "2.4.3"
+            const val COMPOSE: String = "1.3.2"
+            const val COMPOSE_MATERIAL3: String = "1.0.0"
+            const val COMPOSE_ACTIVITY: String = "1.6.1"
+            const val COMPOSE_LIFECYCLE_VIEWMODEL: String = "2.5.1"
         }
 
         const val CORE_KTX: String = "androidx.core:core-ktx:${Versions.CORE_KTX}"
@@ -38,6 +42,12 @@ object DepsConstants {
         const val ROOM_COMPILER: String = "androidx.room:room-compiler:${Versions.ROOM}"
         const val ROOM_KTX: String = "androidx.room:room-ktx:${Versions.ROOM}"
         const val ROOM_PAGING: String = "androidx.room:room-paging:${Versions.ROOM}"
+        const val COMPOSE_RUNTIME: String = "androidx.compose.runtime:runtime:${Versions.COMPOSE}"
+        const val COMPOSE_MATERIAL3: String = "androidx.compose.material3:material3:${Versions.COMPOSE_MATERIAL3}"
+        const val COMPOSE_UI_TOOLING_PREVIEW: String = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE}"
+        const val COMPOSE_UI_TOOLING: String = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
+        const val COMPOSE_ACTIVITY: String = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
+        const val COMPOSE_LIFECYCLE_VIEWMODEL: String = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.COMPOSE_LIFECYCLE_VIEWMODEL}"
     }
 
     object Google {

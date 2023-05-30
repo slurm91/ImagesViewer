@@ -23,4 +23,8 @@ object AndroidConstants {
         const val JVM_TARGET: String = "11"
     }
 
+    object ComposeOptions {
+        const val KOTLIN_COMPILER_EXTENSION_VERSION: String = "1.3.2"
+    }
+
 }

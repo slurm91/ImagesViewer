@@ -26,6 +26,7 @@ class AndroidGradlePlugin : Plugin<Project> {
             configureCompileOptionsExtension(this)
             configureKotlinOptionsExtension(this)
             configBuildFeaturesExtension(this)
+            configureComposeOptions(this)
         }
     }
 
@@ -80,6 +81,9 @@ class AndroidGradlePlugin : Plugin<Project> {
     }
 
     private fun configBuildFeaturesExtension(baseExtension: BaseExtension) {
+        baseExtension.buildFeatures.apply {
+            compose = true
+        }
         //baseExtension.buildFeatures.viewBinding = true
         if(baseExtension is LibraryExtension) {
             baseExtension.buildFeatures.dataBinding = true
@@ -87,6 +91,12 @@ class AndroidGradlePlugin : Plugin<Project> {
 
         if (baseExtension is BaseAppModuleExtension) {
             baseExtension.buildFeatures.dataBinding = true
+        }
+    }
+
+    private fun configureComposeOptions(baseExtension: BaseExtension) {
+        baseExtension.composeOptions.apply {
+            kotlinCompilerExtensionVersion = AndroidConstants.ComposeOptions.KOTLIN_COMPILER_EXTENSION_VERSION
         }
     }
 
