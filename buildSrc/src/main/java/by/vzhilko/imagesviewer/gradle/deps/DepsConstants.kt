@@ -28,6 +28,9 @@ object DepsConstants {
             const val COMPOSE_MATERIAL3: String = "1.0.0"
             const val COMPOSE_ACTIVITY: String = "1.6.1"
             const val COMPOSE_LIFECYCLE_VIEWMODEL: String = "2.5.1"
+            const val COMPOSE_NAVIGATION: String = "2.5.3"
+            const val COMPOSE_HILT_NAVIGATION: String = "1.0.0"
+            const val COMPOSE_PAGING: String = "1.0.0-alpha17"
         }
 
         const val CORE_KTX: String = "androidx.core:core-ktx:${Versions.CORE_KTX}"
@@ -48,6 +51,9 @@ object DepsConstants {
         const val COMPOSE_UI_TOOLING: String = "androidx.compose.ui:ui-tooling:${Versions.COMPOSE}"
         const val COMPOSE_ACTIVITY: String = "androidx.activity:activity-compose:${Versions.COMPOSE_ACTIVITY}"
         const val COMPOSE_LIFECYCLE_VIEWMODEL: String = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.COMPOSE_LIFECYCLE_VIEWMODEL}"
+        const val COMPOSE_NAVIGATION: String = "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
+        const val COMPOSE_HILT_NAVIGATION: String = "androidx.hilt:hilt-navigation-compose:${Versions.COMPOSE_HILT_NAVIGATION}"
+        const val COMPOSE_PAGING: String = "androidx.paging:paging-compose:${Versions.COMPOSE_PAGING}"
     }
 
     object Google {
@@ -80,9 +86,11 @@ object DepsConstants {
     object Coil {
         object Versions {
             const val COIL: String = "2.2.2"
+            const val COIL_COMPOSE = "2.4.0"
         }
 
         const val COIL: String = "io.coil-kt:coil:${Versions.COIL}"
+        const val COIL_COMPOSE: String = "io.coil-kt:coil-compose:${Versions.COIL_COMPOSE}"
     }
 
     object Facebook {

@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 private const val IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY: String = "IMAGE_LIST_QUERY_SAVED_STATE_HANDLE_KEY"
-private const val IMAGE_LIST_QUERY_DEFAULT_VALUE: String = "fruits"
+private const val IMAGE_LIST_QUERY_DEFAULT_VALUE: String = "strawberry lemon"
 
 @HiltViewModel
 class ImageListViewModel @Inject constructor (

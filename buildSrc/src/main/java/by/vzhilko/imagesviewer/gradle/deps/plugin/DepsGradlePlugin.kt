@@ -76,6 +76,9 @@ class DepsGradlePlugin : Plugin<Project> {
             addDebugImplementation(DepsConstants.Androidx.COMPOSE_UI_TOOLING)
             addImplementation(DepsConstants.Androidx.COMPOSE_ACTIVITY)
             addImplementation(DepsConstants.Androidx.COMPOSE_LIFECYCLE_VIEWMODEL)
+            addImplementation(DepsConstants.Androidx.COMPOSE_NAVIGATION)
+            addImplementation(DepsConstants.Androidx.COMPOSE_HILT_NAVIGATION)
+            addImplementation(DepsConstants.Androidx.COMPOSE_PAGING)
         }
     }
 
@@ -101,6 +104,7 @@ class DepsGradlePlugin : Plugin<Project> {
     private fun addCoilDependencies(target: Project) {
         target.dependencies.apply {
             addImplementation(DepsConstants.Coil.COIL)
+            addImplementation(DepsConstants.Coil.COIL_COMPOSE)
         }
     }
 
