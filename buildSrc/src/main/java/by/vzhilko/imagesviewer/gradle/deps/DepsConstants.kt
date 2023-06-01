@@ -31,6 +31,7 @@ object DepsConstants {
             const val COMPOSE_NAVIGATION: String = "2.5.3"
             const val COMPOSE_HILT_NAVIGATION: String = "1.0.0"
             const val COMPOSE_PAGING: String = "1.0.0-alpha17"
+            const val COMPOSE_CONSTRAINT_LAYOUT: String = "1.0.1"
         }
 
         const val CORE_KTX: String = "androidx.core:core-ktx:${Versions.CORE_KTX}"
@@ -54,6 +55,7 @@ object DepsConstants {
         const val COMPOSE_NAVIGATION: String = "androidx.navigation:navigation-compose:${Versions.COMPOSE_NAVIGATION}"
         const val COMPOSE_HILT_NAVIGATION: String = "androidx.hilt:hilt-navigation-compose:${Versions.COMPOSE_HILT_NAVIGATION}"
         const val COMPOSE_PAGING: String = "androidx.paging:paging-compose:${Versions.COMPOSE_PAGING}"
+        const val COMPOSE_CONSTRAINT_LAYOUT: String = "androidx.constraintlayout:constraintlayout-compose:${Versions.COMPOSE_CONSTRAINT_LAYOUT}"
     }
 
     object Google {

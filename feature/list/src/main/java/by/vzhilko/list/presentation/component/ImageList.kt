@@ -20,7 +20,8 @@ import by.vzhilko.list.R
 fun ImageList(
     modifier: Modifier = Modifier,
     lazyPagingItems: LazyPagingItems<ImageData>,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onItemClick: (ImageData) -> Unit
 ) {
     Log.d("myTag", "ImageList")
     Box(modifier) {
@@ -49,7 +50,7 @@ fun ImageList(
 
                 //Show item if it's possible
                 item?.let {
-                    ImageListItem(data = it)
+                    ImageListItem(data = it, onClick = onItemClick)
                     if (index < lazyPagingItems.itemCount - 1) {
                         Divider()
                     }
@@ -75,7 +76,7 @@ fun ImageList(
             }
         }
 
-        //Show error message list is loaded for the first time
+        //Show error message or progress when list is loaded for the first time
         when (lazyPagingItems.loadState.refresh) {
             is LoadState.Error -> {
                 val errorModifier: Modifier = Modifier

@@ -1,5 +1,6 @@
 package by.vzhilko.list.presentation.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,10 +23,11 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun ImageListItem(data: ImageData) {
+fun ImageListItem(data: ImageData, onClick: (ImageData) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick(data) }
             .padding(16.dp)
     ) {
         AsyncImage(

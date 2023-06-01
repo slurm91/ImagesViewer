@@ -28,15 +28,18 @@ import by.vzhilko.list.presentation.viewmodel.ImageListViewModel
 import by.vzhilko.core.R as coreR
 import androidx.compose.runtime.getValue
 import by.vzhilko.list.presentation.component.ImageList
+import by.vzhilko.list.presentation.component.ImageListDialog
 import by.vzhilko.list.presentation.component.ImageListSearchField
 
 const val IMAGE_LIST_SCREEN_ROUTE: String = "image_list_screen"
 
 @Composable
-fun ImageListScreen() {
+fun ImageListScreen(onNavigateToDetails: (ImageData) -> Unit = {}) {
     val viewModel: ImageListViewModel = hiltViewModel()
     val query: String by viewModel.queryStateFlow.collectAsState()
     val imagePagingData: LazyPagingItems<ImageData> = viewModel.imageDataPagingDataFlow.collectAsLazyPagingItems()
+    val isDialogShown: Boolean by viewModel.imageListDialogAppearanceFlow.collectAsState()
+    val imageData: ImageData? by viewModel.imageDataFlow.collectAsState()
     AppTheme {
         Scaffold(
             topBar = { ImageListScreenTopBar() },
@@ -47,15 +50,31 @@ fun ImageListScreen() {
                     lazyPagingItems = imagePagingData,
                     query = query,
                     onTextChanged = { text -> viewModel.updateQuery(text) },
-                    onRetry = { imagePagingData.retry() }
+                    onRetry = { imagePagingData.retry() },
+                    onItemClick = { data ->
+                        viewModel.updateImageData(data)
+                        viewModel.updateDialogAppearance(true)
+                    }
                 )
             }
         )
+        if (isDialogShown) {
+            ImageListDialog(
+                onDismissDialog = { viewModel.updateDialogAppearance(false) },
+                onPositiveButtonClick = {
+                    Log.d("myTag", "ImageListScreen onPositiveButtonClick data: ${imageData}")
+                    viewModel.updateDialogAppearance(false)
+                    imageData?.let { onNavigateToDetails(it) }
+                },
+                onNegativeButtonClick = { viewModel.updateDialogAppearance(false) }
+            )
+        }
     }
 }
 
 @Composable
 private fun ImageListScreenTopBar() {
+    Log.d("myTag", "ImageListScreenTopBar")
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
@@ -76,7 +95,8 @@ private fun ImageListScreenContent(
     query: String,
     lazyPagingItems: LazyPagingItems<ImageData>,
     onTextChanged: (String) -> Unit,
-    onRetry: () -> Unit
+    onRetry: () -> Unit,
+    onItemClick: (ImageData) -> Unit
 ) {
     Column(modifier = modifier) {
         ImageListSearchField(
@@ -87,7 +107,8 @@ private fun ImageListScreenContent(
         ImageList(
             modifier = Modifier.fillMaxSize(),
             lazyPagingItems = lazyPagingItems,
-            onRetry = onRetry
+            onRetry = onRetry,
+            onItemClick = onItemClick
         )
     }
 }

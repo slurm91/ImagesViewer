@@ -58,4 +58,19 @@ class ImageListViewModel @Inject constructor (
         _imageListStateStateFlow.value = state
     }
 
+    private val _imageListDialogAppearanceFlow: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val imageListDialogAppearanceFlow: StateFlow<Boolean> = _imageListDialogAppearanceFlow.asStateFlow()
+
+    fun updateDialogAppearance(show: Boolean) {
+        _imageListDialogAppearanceFlow.value = show
+    }
+
+    private val _imageDataFlow: MutableStateFlow<ImageData?> = MutableStateFlow(null)
+    val imageDataFlow: StateFlow<ImageData?> = _imageDataFlow.asStateFlow()
+
+    fun updateImageData(data: ImageData) {
+        _imageDataFlow.value = data
+    }
+
+
 }

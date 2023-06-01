@@ -79,6 +79,7 @@ class DepsGradlePlugin : Plugin<Project> {
             addImplementation(DepsConstants.Androidx.COMPOSE_NAVIGATION)
             addImplementation(DepsConstants.Androidx.COMPOSE_HILT_NAVIGATION)
             addImplementation(DepsConstants.Androidx.COMPOSE_PAGING)
+            addImplementation(DepsConstants.Androidx.COMPOSE_CONSTRAINT_LAYOUT)
         }
     }
 
